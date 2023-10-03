@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innovian.Contrib.Dapr.StateQueryBuilder", "DaprStateQueryBuilder\Innovian.Contrib.Dapr.StateQueryBuilder.csproj", "{BBBDD9E7-F08E-45D1-9D77-7A0A7CF90A00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innovian.Contrib.Dapr.StateQueryBuilder.Tests", "DaprStateQueryBuilder.Tests\Innovian.Contrib.Dapr.StateQueryBuilder.Tests.csproj", "{2917181E-0C12-43CF-9CD9-6460BDBDD208}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBBDD9E7-F08E-45D1-9D77-7A0A7CF90A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBDD9E7-F08E-45D1-9D77-7A0A7CF90A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBDD9E7-F08E-45D1-9D77-7A0A7CF90A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBDD9E7-F08E-45D1-9D77-7A0A7CF90A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2917181E-0C12-43CF-9CD9-6460BDBDD208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2917181E-0C12-43CF-9CD9-6460BDBDD208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2917181E-0C12-43CF-9CD9-6460BDBDD208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2917181E-0C12-43CF-9CD9-6460BDBDD208}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B98B7A0-41DF-4DF6-B098-66513C48635E}
+	EndGlobalSection
+EndGlobal

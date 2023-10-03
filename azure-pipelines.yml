@@ -1,0 +1,63 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: $(date:yyyy.MM.dd)$(rev:.r)
+
+trigger:
+  batch: true
+  branches: 
+    include: 
+      - main
+  paths:
+    include:
+      - /DaprStateQueryBuilder
+      - /DaprStateQueryBuilder.Tests
+
+pool: AzureBuildServers
+
+variables:
+  - name: BuildNumber
+    value: $(Build.BuildNumber)
+  - name: ProjectName
+    value: DaprStateQueryBuilder
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: '**/$(ProjectName).csproj'
+    feedsToUse: 'select'
+    vstsFeed: '4d1432f3-ac87-4104-a03a-bc658b00a9ea/0fb21d1f-6c0f-493f-9532-64eeda958e26'
+    noCache: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    projects: '**/$(ProjectName).Tests.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    projects: '**/$(ProjectName).csproj'
+    arguments: '--no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/$(ProjectName).csproj'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'BuildNumber'
+
+- task: DotNetCoreCLI@2
+  displayName: 'nuget push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'fde6adae-b145-4d2f-84af-639ddee55f45'
