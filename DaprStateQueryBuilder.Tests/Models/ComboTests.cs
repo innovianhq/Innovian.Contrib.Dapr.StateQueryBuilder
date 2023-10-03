@@ -2,6 +2,8 @@
 //  Copyright (c) 2023 Innovian Corporation. All rights reserved.
 //  -------------------------------------------------------------
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Innovian.Contrib.Dapr.StateQueryBuilder.Models.Enums;
 using Innovian.Contrib.Dapr.StateQueryBuilder.Tests.Data;
 
@@ -92,6 +94,74 @@ public class ComboTests
             .ToString();
         const string expected = """
                                 {"filter":{"OR":[{"EQ":{"person.org":"Dev Ops"}},{"AND":[{"EQ":{"person.org":"Finance"}},{"IN":{"state":["CA","WA"]}}]}]},"sort":[{"key":"state","order":"DESC"},{"key":"person.id","order":"ASC"}],"page":{"limit":3}}
+                                """;
+
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestMethod]
+    public void FullTestCustomOptions()
+    {
+        var opt = new JsonSerializerOptions
+        {
+            AllowTrailingCommas = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true
+        };
+        var result = new QueryBuilder<SampleData>(opt)
+            .WithPaging(3)
+            .Where(b => b
+                .Or(new FilterQuery<SampleData>().Eq(a => a.Person.Org, "Dev Ops"),
+                    new FilterQuery<SampleData>()
+                        .And(new FilterQuery<SampleData>().Eq(a => a.Person.Org, "Finance"),
+                            new FilterQuery<SampleData>().In(a => a.State, "CA", "WA"))))
+            .Sort(a => a.State, Ordering.Descending)
+            .Sort(a => a.Person.Id)
+            .ToString();
+
+        const string expected = """
+                                {
+                                  "filter": {
+                                    "OR": [
+                                      {
+                                        "EQ": {
+                                          "person.org": "Dev Ops"
+                                        }
+                                      },
+                                      {
+                                        "AND": [
+                                          {
+                                            "EQ": {
+                                              "person.org": "Finance"
+                                            }
+                                          },
+                                          {
+                                            "IN": {
+                                              "state": [
+                                                "CA",
+                                                "WA"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "sort": [
+                                    {
+                                      "key": "state",
+                                      "order": "DESC"
+                                    },
+                                    {
+                                      "key": "person.id",
+                                      "order": "ASC"
+                                    }
+                                  ],
+                                  "page": {
+                                    "limit": 3
+                                  }
+                                }
                                 """;
 
         Assert.AreEqual(expected, result);

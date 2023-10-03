@@ -15,8 +15,31 @@ namespace Innovian.Contrib.Dapr.StateQueryBuilder;
 public sealed class QueryBuilder<T> : IInitialQueryBuilder<T>, IContinuableQueryBuilder<T>, ISortByQuery<T>, IFinishedQueryBuilder<T>
 {
     private readonly List<Sorting> _sortQueries = new();
+    private readonly JsonSerializerOptions _serializerOptions = new()
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
     private Paging _pagingQuery = new();
     private IFinishedFilterQuery? _filterQuery = null;
+
+    /// <summary>
+    /// Constructor enabling the use of the built-in JSON serializer options.
+    /// </summary>
+    public QueryBuilder()
+    {
+
+    }
+
+    /// <summary>
+    /// Constructor allowing the JSON serializer options to be overridden.
+    /// </summary>
+    /// <param name="serializerOptions"></param>
+    public QueryBuilder(JsonSerializerOptions serializerOptions)
+    {
+        _serializerOptions = serializerOptions;
+    }
     
     public IPagingQuery<T> WithPaging(uint? limit = null, string? continuationToken = null)
     {
@@ -73,10 +96,7 @@ public sealed class QueryBuilder<T> : IInitialQueryBuilder<T>, IContinuableQuery
             Paging: _pagingQuery != new Paging() ? _pagingQuery : null
         );
 
-        return JsonSerializer.Serialize(query, new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        });
+        return JsonSerializer.Serialize(query, _serializerOptions);
     }
 }
 
