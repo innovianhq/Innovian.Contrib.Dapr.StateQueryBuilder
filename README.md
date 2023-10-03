@@ -207,3 +207,12 @@ Per the recommendation, we finalize with `Build()` and render it to JSON with `T
   }
 }
 ```
+
+## Running unit tests
+All the unit tests were written using MSTestv2 and can be run using your favorite test runner from the `Innovian.Contrib.Dapr.StateQueryBuilder.Tests` project.
+
+## Contributing
+Contributions are welcome. Please read our [contributing guide](./CONTRIBUTING.md) to learn more about filing issues and submitting PRs.
+
+## License
+[Innovian.Contrib.Dapr.StateQueryBuilder](https://github.com/innovianhq/Innovian.Contrib.Dapr.StateQueryBuilder) is [MIT licensed](./LICENSE)
