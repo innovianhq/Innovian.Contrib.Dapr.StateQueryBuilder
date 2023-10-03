@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 name: $(date:yyyy.MM.dd)$(rev:.r)
 
 trigger:
@@ -24,6 +19,12 @@ variables:
     value: DaprStateQueryBuilder
 
 steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet tool'
+  inputs:
+   checkLatest:  true
+   versionSpec: '>=6.7.0' # Latest versions at https://dist.nuget.org/tools.json
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
@@ -54,10 +55,10 @@ steps:
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'BuildNumber'
 
-- task: DotNetCoreCLI@2
-  displayName: 'nuget push'
+- task: PowerShell@2
+  displayName: 'push to NuGet.org'
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'fde6adae-b145-4d2f-84af-639ddee55f45'
+    targetType: 'inline'
+    script: 'nuget push "$(Build.ArtifactStagingDirectory)\*.nupkg" -ApiKey $(NuGetApiKey) -Source https://api.nuget.org/v3/index.json'
+  env:
+    NuGetApiKey: $(NuGetApiKey)
