@@ -1,19 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <PackageId>Innovian.Contrib.Dapr.StateQueryBuilder</PackageId>
-	  <Authors>Whit Waldo</Authors>
-	  <Company>Innovian</Company>
-	  <Description>Fluent API used to build JSON query used in DAPR state queries.</Description>
-	  <Copyright>Copyright 2023 (c) Innovian Corporation. All rights reserved.</Copyright>
-	  <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Innovian.Contrib.Dapr.StateQueryBuilder</PackageId>
+		<Authors>Whit Waldo</Authors>
+		<Company>Innovian Corporation</Company>
+		<Description>Fluent API used to build the JSON string used in Dapr state queries.</Description>
+		<Copyright>2023</Copyright>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/innovianhq/Innovian.Contrib.Dapr.StateQueryBuilder</PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="JsonConverters\" />
-    <Folder Include="Utilities\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="JsonConverters\" />
+		<Folder Include="Utilities\" />
+	</ItemGroup>
 
 </Project>
