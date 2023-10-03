@@ -215,4 +215,4 @@ All the unit tests were written using MSTestv2 and can be run using your favorit
 Contributions are welcome. Please read our [contributing guide](./CONTRIBUTING.md) to learn more about filing issues and submitting PRs.
 
 ## License
-[Innovian.Contrib.Dapr.StateQueryBuilder](https://github.com/innovianhq/Innovian.Contrib.Dapr.StateQueryBuilder) is [MIT licensed](./LICENSE)
+[Innovian.Contrib.Dapr.StateQueryBuilder](https://github.com/innovianhq/Innovian.Contrib.Dapr.StateQueryBuilder) is licensed for use under the [Apache 2.0 license](./LICENSE)
