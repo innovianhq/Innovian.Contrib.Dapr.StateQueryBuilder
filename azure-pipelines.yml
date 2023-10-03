@@ -29,29 +29,29 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    projects: '**/$(ProjectName).csproj'
+    projects: '**/Innovian.Contrib.Dapr.StateQueryBuilder.csproj'
     feedsToUse: 'select'
     vstsFeed: '4d1432f3-ac87-4104-a03a-bc658b00a9ea/0fb21d1f-6c0f-493f-9532-64eeda958e26'
     noCache: true
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: 'test'
-    projects: '**/$(ProjectName).Tests.csproj'
-
-- task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     command: 'build'
-    projects: '**/$(ProjectName).csproj'
+    projects: '**/Innovian.Contrib.Dapr.StateQueryBuilder.csproj'
     arguments: '--no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    projects: '**/Innovian.Contrib.Dapr.StateQueryBuilder.Tests.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
     command: 'pack'
-    packagesToPack: '**/$(ProjectName).csproj'
+    packagesToPack: '**/Innovian.Contrib.Dapr.StateQueryBuilder.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'BuildNumber'
 
