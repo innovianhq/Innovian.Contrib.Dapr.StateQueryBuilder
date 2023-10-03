@@ -32,3 +32,6 @@ Before submitting your Pull Request (PR) consider the following guidelines:
       git push -f
       ```
 And that's it! Thank you for your contribution!
+
+
+A quick thank you to the maintainers of SoCreate's [Service Fabric Distributed Cache](https://github.com/SoCreate/service-fabric-distributed-cache) project for the general layout of the repository documentation.
