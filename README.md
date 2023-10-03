@@ -1,10 +1,10 @@
 # Innovian.Contrib.Dapr.StateQueryBuilder
 [![Build Status](https://dev.azure.com/innovian/Innovian%20Open%20Source/_apis/build/status%2Finnovianhq.Innovian.Contrib.Dapr.StateQueryBuilder?branchName=main)](https://dev.azure.com/innovian/Innovian%20Open%20Source/_build/latest?definitionId=306&branchName=main) [![NuGet](https://img.shields.io/nuget/v/Innovian.Contrib.Dapr.StateQueryBuilder.svg)](https://www.nuget.org/packages/Innovian.Contrib.Dapr.StateQueryBuilder/)
 
-This is a contribution to the .NET community of Dapr, providing a fluent API for building out the appropriate JSON for querying state stores as described [here](https://docs.dapr.io/developing-applications/building-blocks/state-management/howto-state-query-api/). As some of these nested filters could get a little unwieldy to write by hand, 
+This is a contribution to the .NET community of [Dapr](https://dapr.io), providing a fluent API for building out the appropriate JSON for querying state stores as described [here](https://docs.dapr.io/developing-applications/building-blocks/state-management/howto-state-query-api/). As some of these nested filters could get a little unwieldy to write by hand, 
 I wanted to take a stab at creating a fluent API capable of doing so for me and my experiment was successful. Thus, I'm sharing the fruits of my efforts with the larger community.
 
-Innovian is not associated with Dapr.
+While a contributor to the project with packages such as this, Innovian is not otherwise associated with Dapr or the larger Linux Foundation.
 
 ## Installation
 Using the .NET Core CLI tools:
